@@ -8,10 +8,15 @@ class Yinv < Formula
   license "MIT"
   revision 1
 
+  depends_on "cmake" => :build
+  depends_on "ninja" => :build
+  depends_on "pkgconf" => :build
+  depends_on "freetype"
   depends_on "gdk-pixbuf"
   depends_on "jpeg-turbo"
   depends_on "libffi"
   depends_on "libtiff"
+  depends_on "little-cms2"
   depends_on "pango"
   depends_on "python@3.12"
   depends_on "webp"
@@ -97,6 +102,13 @@ class Yinv < Formula
   end
 
   def install
+    deps.each do |dep|
+      next if dep.build? || dep.test?
+
+      ENV.prepend "CPPFLAGS", "-I#{dep.to_formula.opt_include}"
+      ENV.prepend "LDFLAGS", "-L#{dep.to_formula.opt_lib}"
+    end
+
     virtualenv_install_with_resources
   end
 
