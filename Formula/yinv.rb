@@ -6,6 +6,7 @@ class Yinv < Formula
   url "https://files.pythonhosted.org/packages/86/4b/1c6520ef48ca8f79916b42891293b1ec9cfdaa7246f06ab53f8f455f28ab/yinv-0.1.0.tar.gz"
   sha256 "a15dfa5ecce631c332e54a2fcc433d569ddb22b758f05fd79a734c5dbae79a62"
   license "MIT"
+  revision 1
 
   depends_on "gdk-pixbuf"
   depends_on "libffi"
