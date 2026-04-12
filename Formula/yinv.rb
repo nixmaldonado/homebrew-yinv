@@ -7,9 +7,9 @@ class Yinv < Formula
   sha256 "a15dfa5ecce631c332e54a2fcc433d569ddb22b758f05fd79a734c5dbae79a62"
   license "MIT"
 
-  depends_on "pango"
   depends_on "gdk-pixbuf"
   depends_on "libffi"
+  depends_on "pango"
   depends_on "python@3.12"
 
   resource "brotli" do
