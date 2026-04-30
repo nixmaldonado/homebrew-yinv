@@ -3,16 +3,9 @@ class Yinv < Formula
 
   desc "CLI to generate monthly consulting invoices as PDFs"
   homepage "https://github.com/nixmaldonado/yinv"
-  url "https://files.pythonhosted.org/packages/86/4b/1c6520ef48ca8f79916b42891293b1ec9cfdaa7246f06ab53f8f455f28ab/yinv-0.1.0.tar.gz"
-  sha256 "a15dfa5ecce631c332e54a2fcc433d569ddb22b758f05fd79a734c5dbae79a62"
+  url "https://files.pythonhosted.org/packages/9c/c1/2ef39a455243fd950cf0ee0c833bba5ee9d88a90b4878f54ce5926b081eb/yinv-0.1.1.tar.gz"
+  sha256 "858a8b26f545117648ae5184c9dbf0f34a78a616fa10d4553612ecdc2c407a61"
   license "MIT"
-  revision 1
-
-  bottle do
-    root_url "https://github.com/nixmaldonado/homebrew-yinv/releases/download/yinv-0.1.0_1"
-    sha256 cellar: :any, arm64_sequoia: "af078a7bce813ad7618a6c09c5b6e3814a51114f87f639a28d5a9834cb46abbd"
-    sha256 cellar: :any, arm64_sonoma:  "96463ab4fafd69c1484a328c042a50ab105b43e1f7ae2e16619a636367d3c63f"
-  end
 
   depends_on "cmake" => :build
   depends_on "ninja" => :build
