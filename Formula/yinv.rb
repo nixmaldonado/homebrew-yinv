@@ -7,6 +7,12 @@ class Yinv < Formula
   sha256 "858a8b26f545117648ae5184c9dbf0f34a78a616fa10d4553612ecdc2c407a61"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/nixmaldonado/homebrew-yinv/releases/download/yinv-0.1.1"
+    sha256 cellar: :any, arm64_sequoia: "0b9a2c4c42c970c27949f0dae30220e116b60ffaa793be8ec3071aff03f44ae9"
+    sha256 cellar: :any, arm64_sonoma:  "f8399cf41e1f1c32c9fe183d62ae963bf71eaf92763cf0c246544e1ff4de1baa"
+  end
+
   depends_on "cmake" => :build
   depends_on "ninja" => :build
   depends_on "pkgconf" => :build
