@@ -26,7 +26,7 @@ jobs:
         run: brew pr-pull --debug --tap="$GITHUB_REPOSITORY" "$PULL_REQUEST"
 
       - name: Push commits
-        uses: Homebrew/actions/git-try-push@master
+        uses: Homebrew/actions/git-try-push@main
         with:
           token: ${{ github.token }}
           branch: main
@@ -35,4 +35,8 @@ jobs:
         if: github.event.pull_request.head.repo.full_name == github.repository
         env:
           BRANCH: ${{ github.event.pull_request.head.ref }}
-        run: git push --delete origin "$BRANCH"
+        # Use a fully-qualified refspec — the bottle release upload creates a
+        # tag with the same name as the source branch (e.g. `yinv-0.1.1`), so
+        # a bare `git push --delete origin "$BRANCH"` errors with
+        # "dst refspec matches more than one" and fails the whole workflow.
+        run: git push origin --delete "refs/heads/$BRANCH"

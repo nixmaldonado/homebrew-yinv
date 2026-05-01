@@ -11,7 +11,7 @@ jobs:
   test-bot:
     strategy:
       matrix:
-        os: [macos-14, macos-15]
+        os: [macos-14, macos-15, macos-26]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Set up Homebrew
@@ -41,7 +41,27 @@ jobs:
 
       - name: Verify bottles were built
         if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OWNER_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
+          # `brew test-bot --only-formulae` only builds bottles for formulae
+          # that changed in the PR. CI-only or docs-only PRs legitimately
+          # produce zero bottles — that's not a silent build failure, so
+          # skip the assertion when no Formula/ file was touched.
+          # Uses curl + python3 (always present) instead of `gh` because
+          # Homebrew/actions/setup-homebrew reshuffles PATH and `gh` is not
+          # always on it on every runner image.
+          formula_changed=$(curl -fsSL \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$OWNER_REPO/pulls/$PR_NUMBER/files?per_page=100" \
+            | python3 -c 'import json, sys; print("yes" if any(f["filename"].startswith("Formula/") for f in json.load(sys.stdin)) else "no")')
+          if [ "$formula_changed" != "yes" ]; then
+            echo "No Formula/ files changed in this PR — skipping bottle check."
+            exit 0
+          fi
           shopt -s nullglob
           bottles=(*.bottle.*)
           if [ ${#bottles[@]} -eq 0 ]; then
