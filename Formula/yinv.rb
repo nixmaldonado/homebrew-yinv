@@ -3,15 +3,9 @@ class Yinv < Formula
 
   desc "CLI to generate monthly consulting invoices as PDFs"
   homepage "https://github.com/nixmaldonado/yinv"
-  url "https://files.pythonhosted.org/packages/9c/c1/2ef39a455243fd950cf0ee0c833bba5ee9d88a90b4878f54ce5926b081eb/yinv-0.1.1.tar.gz"
-  sha256 "858a8b26f545117648ae5184c9dbf0f34a78a616fa10d4553612ecdc2c407a61"
+  url "https://files.pythonhosted.org/packages/4f/f6/eabe5a423aa3b88df47a0c3a981b8f3d1fa2035b2e64746eb75d8b0d7c03/yinv-0.1.2.tar.gz"
+  sha256 "c19a3f9f28a008c671882f4dac5d938ad4057f815a32c518e5db563c8f90e05f"
   license "MIT"
-
-  bottle do
-    root_url "https://github.com/nixmaldonado/homebrew-yinv/releases/download/yinv-0.1.1"
-    sha256 cellar: :any, arm64_sequoia: "0b9a2c4c42c970c27949f0dae30220e116b60ffaa793be8ec3071aff03f44ae9"
-    sha256 cellar: :any, arm64_sonoma:  "f8399cf41e1f1c32c9fe183d62ae963bf71eaf92763cf0c246544e1ff4de1baa"
-  end
 
   depends_on "cmake" => :build
   depends_on "ninja" => :build
@@ -42,8 +36,8 @@ class Yinv < Formula
   end
 
   resource "fonttools" do
-    url "https://files.pythonhosted.org/packages/9a/08/7012b00a9a5874311b639c3920270c36ee0c445b69d9989a85e5c92ebcb0/fonttools-4.62.1.tar.gz"
-    sha256 "e54c75fd6041f1122476776880f7c3c3295ffa31962dc6ebe2543c00dca58b5d"
+    url "https://files.pythonhosted.org/packages/84/69/c97f2c18e0db87d2c7b15da1974dace76ae938f1cfa22e2727a648b7ed43/fonttools-4.63.0.tar.gz"
+    sha256 "caeb583deeb5168e694b65cda8b4ee62abedfa66cf88488734466f2366b9c4e0"
   end
 
   resource "Jinja2" do
