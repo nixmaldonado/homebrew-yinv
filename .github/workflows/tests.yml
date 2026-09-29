@@ -10,8 +10,9 @@ on:
 jobs:
   test-bot:
     strategy:
+      fail-fast: false
       matrix:
-        os: [macos-14, macos-15, macos-26]
+        os: [macos-15, macos-26]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Set up Homebrew
